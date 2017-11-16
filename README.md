@@ -131,3 +131,32 @@ ModuleNotFoundError: No module named 'win32api'
 C:\Users\zhanxiaolin-n22\PycharmProjects\ScrapyDemo\tutorial>
 
     安装win32compat
+
+1. 基本命令
+
+1. scrapy startproject 项目名称
+   - 在当前目录中创建中创建一个项目文件（类似于Django）
+
+2. scrapy genspider [-t template] <name> <domain>
+   - 创建爬虫应用
+   如：
+      scrapy gensipider -t basic oldboy oldboy.com
+      scrapy gensipider -t xmlfeed autohome autohome.com.cn
+   PS:
+      查看所有命令：scrapy gensipider -l
+      查看模板命令：scrapy gensipider -d 模板名称
+
+3. scrapy list
+   - 展示爬虫应用列表
+
+4. scrapy crawl 爬虫应用名称
+   - 运行单独爬虫应用
+
+
+文件说明：
+
+scrapy.cfg  项目的主配置信息。（真正爬虫相关的配置信息在settings.py文件中）
+items.py    设置数据存储模板，用于结构化数据，如：Django的Model
+pipelines    数据处理行为，如：一般结构化的数据持久化
+settings.py 配置文件，如：递归的层数、并发数，延迟下载等
+spiders      爬虫目录，如：创建文件，编写爬虫规则
