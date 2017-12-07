@@ -137,3 +137,62 @@ import json
 data = [ { 'a' : 1, 'b' : 2, 'c' : 3, 'd' : 4, 'e' : 5 } ]
 json = json.dumps(data)
 print(json)
+
+
+import wx
+
+print(wx.version())
+
+import pymysql.cursors
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user='root',
+                             password='123456',
+                             db='world',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
+
+try:
+    # connection.open;
+    # with connection.cursor() as cursor:
+    #     # Create a new record
+    #     sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
+    #     cursor.execute(sql, ('webmaster@python.org', 'very-secret'))
+    #
+    # # connection is not autocommit by default. So you must commit to save
+    # # your changes.
+    # connection.commit()
+
+    with connection.cursor() as cursor:
+        # Read a single record
+        sql = "SELECT * FROM `city`"
+        cursor.execute(sql)
+        result = cursor.fetchone()
+        print(result)
+        datas = cursor.fetchall()
+        for data in datas:
+            print(data)
+finally:
+    connection.close()
+
+time.sleep(5)
+
+from sqlalchemy import create_engine
+
+#创建引擎
+engine = create_engine("mysql+pymysql://root:123456@127.0.0.1:3306/world", max_overflow=5,encoding='utf-8')
+# #执行sql语句
+# engine.execute("INSERT INTO user (name) VALUES ('dadadadad')")
+
+result = engine.execute("select * from city")
+res = result.fetchall()
+print(res)
+
+
+num = [1,2,3]
+a = num.__reversed__()
+num.reverse()
+print(num)
+for b in a :
+    print(b)
